@@ -1,0 +1,13 @@
+{% block title %}Créer un personnelle{% endblock %}
+
+{% block body %}
+    <h1>Créer un personnelle</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+         {{ form_row(form.genre) }}
+        {{ form_row(form.role) }}
+        {{ form_row(form.save) }}
+    {{ form_end(form) }}
+{% endblock %}

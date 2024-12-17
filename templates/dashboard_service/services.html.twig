@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnelles et Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Services et Personnelles</h1>
+    {% for service in services %}
+        <h2>Service: {{ service.nom }}</h2>
+        <table>
+           <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>nom</th>
+                    <th>Prenom</th>
+                    <th>salaire</th>
+                    <th>role</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for personnelle in service.personnelles %}
+                    <tr>
+                        <td>{{ personnelle.id }}</td>
+                        <td>{{ personnelle.nom }}</td>
+                        <td>{{ personnelle.prenom }}</td>
+                        <td>{{ personnelle.salaire }}</td>
+                         <td>{{ personnelle.role }}</td>
+
+
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Aucune service trouvé.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun personnelle trouvé.</p>
+    {% endfor %}
+</body>
+</html>

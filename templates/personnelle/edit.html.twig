@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -6,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <img rel="apple-touch-icon" sizes="76x76" src="{{ asset('img\apple-icon.png') }}">
   <img src="{{asset('img\favicon.png')}}" alt="Author picture" />
-  <title> Service </title>
+  <title> Modifier personnelle </title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -31,35 +30,34 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <span class="ms-1 font-weight-bold">Gestion de Service</span>
+        <span class="ms-1 font-weight-bold">Gestion de Personnelle</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link " href="{{path('dashboardService')}}">
+          <a class="nav-link " href={{path('dashboardService')}}>
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Tableau de bord</span>
           </a>
         </li>
-            <li class="nav-item">
-          <a class="nav-link " href="{{path('app_personnelle_add')}}">
+        <li class="nav-item">
+          <a class="nav-link active " href="{{path('app_personnelle_add')}}">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
  <i class="bi bi-people-fill text-dark text-sm opacity-10"></i>            </div>
             <span class="nav-link-text ms-1">Personnelles</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active " href="{{path('app_service_new')}}">
+          <a class="nav-link " href="{{path('app_service_new')}}">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
 <i class="bi bi-gear-fill text-dark text-sm opacity-10"></i>            </div>
-            <span class="nav-link-text ms-1">Service</span>
+            <span class="nav-link-text ms-1">Services</span>
           </a>
         </li>
-    
             <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Les gestions</h6>
         </li>
@@ -95,6 +93,7 @@
             <span class="nav-link-text ms-1">Gestion de service</span>
           </a>
         </li>
+
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages de compte</h6>
         </li>
@@ -106,6 +105,7 @@
             <span class="nav-link-text ms-1">Profil</span>
           </a>
         </li>
+        
       </ul>
     </div>
 
@@ -114,15 +114,11 @@
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
 
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-<form method="get" action="{}" class="mb-4">
-  
-      
-    
-</form>
-
-
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+        
+              
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -132,9 +128,6 @@
           <div class="card mb-4">
 
             <div class="card-body px-0 pt-0 pb-2">
-
-
-
 {% block create %}
 <div class="container-fluid py-4 d-flex justify-content-center">
   <div class="row w-100">
@@ -142,13 +135,14 @@
       <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
           <h3>
-            <i class="fas fa-plus-circle me-2"></i>Créer un Nouveau Service
+            <i class="fas fa-plus-circle me-2"></i>Modifier un  Personnelle
           </h3>
         </div>
 
         <div class="card-body">
-          {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
-<div class="mb-3">
+          {{ form_start(form) }}  {# Form start without the 'form-control' class #}
+
+          <div class="mb-3">
             {{ form_row(form.nom, {
               'label_attr': {'class': 'form-label fw-bold'},
               'attr': {'class': 'form-control'}
@@ -156,19 +150,37 @@
           </div>
 
           <div class="mb-3">
-            {{ form_row(form.type, {
+            {{ form_row(form.prenom, {
               'label_attr': {'class': 'form-label fw-bold'},
               'attr': {'class': 'form-control'}
             }) }}
           </div>
-
           <div class="mb-3">
-            {{ form_row(form.disponibilite, {
+             <div class="mb-3">
+    {{ form_row(form.genre, {
+      'attr': {'class': 'form-control'}
+    }) }}
+  </div>
+          </div>
+          <div class="mb-3">
+            {{ form_row(form.role, {
+              'label_attr': {'class': 'form-label fw-bold'},
+              'attr': {'class': 'form-select'}
+            }) }}
+          </div>
+          
+          <div class="mb-3">
+            {{ form_row(form.salaire, {
               'label_attr': {'class': 'form-label fw-bold'},
               'attr': {'class': 'form-control'}
             }) }}
           </div>
-
+           <div class="mb-3">
+  {{ form_row(form.service, {
+    'label_attr': {'class': 'form-label fw-bold'}, 
+    'attr': {'class': 'form-select'}  
+  }) }}
+</div>
 
           <div class="text-center">
             {{ form_row(form.save, {
@@ -176,18 +188,13 @@
             }) }}
           </div>
 
-          {{ form_end(form) }}
+          {{ form_end(form) }}  {# Form end here #}
         </div>
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
-
-
-
-
-
 
             
           </div>
@@ -200,57 +207,6 @@
             <div class="card-body px-0 pt-0 pb-2">
 
 
-{% block show %}
-<div class="container mt-4">
-    <h2 class="text-center text-primary mb-4">
-        <i class="bi bi-house-door"></i> Service Existants
-    </h2>
-
-    <div class="list-group">
-        {% for service in services %}
-            <div class="list-group-item d-flex justify-content-between align-items-center shadow-sm p-3 mb-3 rounded">
-                <div>
-                    <p class="mb-0"><strong>ID :</strong> {{ service.id }}</p>
-                      <p class="mb-0"><strong>Nom :</strong> {{ service.nom }}</p>
-                    <p class="mb-0"><strong>Type :</strong> {{ service.type }}</p>
-                    <p class="mb-0"><strong>Disponibilite :</strong> {{ service.disponibilite }}</p>
-              
-                </div>
-
-                <div class="d-flex">
-                    <button type="submit" class="btn btn-edit">
-                        <a href="{{ path('app_service_edit', {'id': service.id}) }}" style="color: #FB6340;">
-                            <i class="fas fa-edit"></i> Éditer
-                        </a>
-                    </button>
-
-                    <form action="{{ path('app_service_delete', {'id': service.id}) }}" method="POST" style="margin: 0;">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ service.id) }}">
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-trash-alt"></i> Supprimer
-                        </button>
-                    </form>
-                </div>
-            </div>
-        {% else %}
-            <p class="text-muted">Aucun Service disponible.</p>
-        {% endfor %}
-    </div>
-
-    {% if foyer is defined and chambres is defined %}
-        <h2 class="text-center text-primary mt-5 mb-4">Détails pour le Service : {{ service.id }}</h2>
-        <h3 class="text-center mb-4">Personnelles :</h3>
-        <div class="list-group">
-            {% for personnelle in personnelles %}
-                <div class="list-group-item d-flex justify-content-between align-items-center shadow-sm p-3 mb-3 rounded">
-                    <p class="mb-0"><strong>Nom :</strong> {{ personnelle.nom }}</p>
-                    <p class="mb-0"><strong>Rôle :</strong> {{ personnelle.role }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-</div>
-{% endblock %}
 
 
 
@@ -268,8 +224,8 @@
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                Services et Personnelles par
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Jeridi Abdallah</a>
+                Gestion de foyer par
+                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Mohamed Soltan</a>
               </div>
             </div>
 

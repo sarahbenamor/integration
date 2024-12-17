@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\ServiceRepository;
+use App\Repository\PersonnelleRepository;
+use App\Entity\Service;
+use App\Entity\Personnelle;
 use App\Repository\FoyerRepository;
 use App\Repository\ChambreRepository;
 use App\Repository\DemandeSelectionRepository;
@@ -17,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UtilisateurController extends AbstractController
 {
     #[Route('/utilisateur', name: 'app_utilisateur')]
-    public function index(FoyerRepository $foyerRepository, ChambreRepository $chambreRepository,TrajetRepository $trajetRepository, VehiculeRepository $vehiculeRepository): Response
+    public function index(FoyerRepository $foyerRepository, ChambreRepository $chambreRepository,TrajetRepository $trajetRepository, VehiculeRepository $vehiculeRepository,ServiceRepository $ServiceRepository): Response
     {
         $foyers = $foyerRepository->findAll();
         $chambres = $chambreRepository->findAll();
@@ -25,12 +28,14 @@ class UtilisateurController extends AbstractController
         $trajets = $trajetRepository->findAll();
         $vehicules = $vehiculeRepository->findAll();
 
+        $services = $ServiceRepository->findAll();
 
         return $this->render('utilisateur.html.twig', [
             'foyers' => $foyers,
             'chambres' => $chambres,
             'trajets' => $trajets,
             'vehicules' => $vehicules,
+            'services'=> $services
         ]);
     }
 
@@ -71,4 +76,6 @@ class UtilisateurController extends AbstractController
 
         return $this->redirectToRoute('app_utilisateur');
     }
+    
+       
 }
