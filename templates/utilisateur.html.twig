@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <img rel="apple-touch-icon" sizes="76x76" src="{{ asset('img\apple-icon.png') }}">
   <img src="{{asset('img\favicon.png')}}" alt="Author picture" />
-  <title> Gestion de Foyer </title>
+  <title> Utilisateur </title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -84,7 +84,7 @@
         <div class="col-lg-7 mb-lg-0 mb-4" style="width: 100%;">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-{% block body %}
+
 <div class="container mt-4">
                   {% for message in app.flashes('successs') %}
             <div class="alert alert-success">
@@ -151,18 +151,73 @@
         </div>
     </form>
 </div>
-{% endblock %}
-
-
-
-
-
-
-            
           </div>
         </div>        
 
 </div>
+
+                    <div class="container-fluid py-4">
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4" style="width: 100%;">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">
+        <i class="bi bi-car-front"></i> Trajet et vehicule disponibles
+    </h2>
+                <div class="card-body px-0 pt-0 pb-2">
+                  <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                      <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ligne</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Point de départ</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Destination</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Horaires</th> 
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Véhicule</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Maps</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trajet in trajets %}
+                                <tr>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.id }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.type }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.ligne }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.pointDepart }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.destination }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.horaire ? trajet.horaire|date('Y-m-d H:i') : 'Non défini' }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">{{ trajet.vehicule ? trajet.vehicule.type : 'Aucun' }}</td>
+                                    <td class="text-xs font-weight-bold mb-0">
+                                        <a href="{{ path('vehicule_map') }}" class="btn btn-danger">Go to Map</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
@@ -170,9 +225,7 @@
               <div class="copyright text-center text-sm text-muted text-lg-start">
                 © <script>
                   document.write(new Date().getFullYear())
-                </script>,
-                Gestion de foyer par
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Mohamed Soltan</a>
+                </script>
               </div>
             </div>
             <div class="col-lg-6">

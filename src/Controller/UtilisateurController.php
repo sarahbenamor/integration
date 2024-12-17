@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Repository\FoyerRepository;
 use App\Repository\ChambreRepository;
 use App\Repository\DemandeSelectionRepository;
+use App\Repository\TrajetRepository;
+use App\Repository\VehiculeRepository;
 use App\Entity\DemandeSelection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,15 +17,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class UtilisateurController extends AbstractController
 {
     #[Route('/utilisateur', name: 'app_utilisateur')]
-    public function index(FoyerRepository $foyerRepository, ChambreRepository $chambreRepository): Response
+    public function index(FoyerRepository $foyerRepository, ChambreRepository $chambreRepository,TrajetRepository $trajetRepository, VehiculeRepository $vehiculeRepository): Response
     {
-        // Récupérer tous les foyers et chambres disponibles
         $foyers = $foyerRepository->findAll();
         $chambres = $chambreRepository->findAll();
+
+        $trajets = $trajetRepository->findAll();
+        $vehicules = $vehiculeRepository->findAll();
+
 
         return $this->render('utilisateur.html.twig', [
             'foyers' => $foyers,
             'chambres' => $chambres,
+            'trajets' => $trajets,
+            'vehicules' => $vehicules,
         ]);
     }
 
